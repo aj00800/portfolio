@@ -29,11 +29,7 @@ export const metadata: Metadata = {
     title: "AJ's Portfolio",
     description: metaDescription
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: "AJ's Portfolio",
-    description: metaDescription
-  },
+
   robots: {
     index: true,
     follow: true
