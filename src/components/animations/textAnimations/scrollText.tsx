@@ -23,6 +23,10 @@ const animateLettersOnScroll = (containerRef: MutableRefObject<any>) => {
   const letterElements = lettersContainer?.querySelectorAll('.letter');
 
   letterElements.forEach((letter: Element, index: number) => {
+    // Random speed is assigned here (client-only, post-mount) rather than
+    // during render, since computing it in JSX causes a server/client
+    // hydration mismatch.
+    letter.setAttribute('data-speed', String(getRandomSpeed()));
     gsap.to(letter, {
       y: (i, el) =>
         (1 - parseFloat(el.getAttribute('data-speed'))) *
@@ -46,7 +50,7 @@ function LetterDisplay({ word }: { word: string }) {
     <div
       key={index}
       className="letter text-6xl font-semibold xs:text-[90px] xs:leading-none md:text-[120px] lg:text-[150px] xl:text-[210px] "
-      data-speed={getRandomSpeed()}
+      data-speed="1"
     >
       {letter}
     </div>
